@@ -12,10 +12,16 @@ public class Exam5_4 {
 		int total = 0;
 		float average = 0;
 		
-//		System.out.println(arr.length);
 		for (int i = 0 ;i < arr.length; i++) {
-			
+			for (int j = 0; j < arr[i].length; j++) {
+				
+				total += arr[i][j];
+			}
+			average = total / arr[i].length; //가변배열일때 average는 어케 구해?
 		}
+		
+		//average = total / (arr.length * arr[0].length) ;			
+		
 		
 		 System.out.println("totat="+total);
 		 System.out.println("average="+average);

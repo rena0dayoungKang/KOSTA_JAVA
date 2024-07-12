@@ -7,12 +7,12 @@ public class ArrayTest7 {
 	public static void main(String[] args) {
 
 		// 버블 sort
+		// 내생각
 		int[] numbers = { 95, 75, 85, 100, 50 };
 		for (int i = 0; i < numbers.length; i++) {
 			for (int j = 0; j < numbers.length - i - 1; j++) {
-				int tmp = 0;
 				if (numbers[j] > numbers[j + 1]) {
-					tmp = numbers[j];
+					int tmp = numbers[j];
 					numbers[j] = numbers[j + 1];
 					numbers[j + 1] = tmp;
 				} else {
@@ -20,11 +20,21 @@ public class ArrayTest7 {
 				}
 			}
 		}
+
+
+		// 선생님
+//		for (int i = 0; i < numbers.length - 1; i++) {
+//			for (int j = 0; j < numbers.length - i - 1; j++) {
+//				if (numbers[j] > numbers[j + 1]) {
+//					int t = numbers[j];
+//					numbers[j] = numbers[j+1];
+//					numbers[j+1] = t;
+//				}
+//			}
+//		}
 		
 		for (int i = 0; i < numbers.length; i++) {
-			System.out.print(numbers[i]+" ");
+			System.out.print(numbers[i] + " ");
 		}
-
 	}
-
 }

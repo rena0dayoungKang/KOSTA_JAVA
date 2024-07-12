@@ -11,7 +11,7 @@ public class ArrayTest6 {
 		int[] numbers = new int[100];
 		// 내생각
 		int max_value = -999, min_value = 998;
-		for (int i = 0;; i++) {
+		for (int i = 0;; i++) { 
 			numbers[i] = sc.nextInt();
 			if (numbers[i] == 999)
 				break;
