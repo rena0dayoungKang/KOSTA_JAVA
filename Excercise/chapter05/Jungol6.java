@@ -1,11 +1,15 @@
 package chapter05;
 
+import java.util.Scanner;
+
 //아래와 같은 파스칼 삼각형을 출력하는 프로그램을 작성하시오. 
 //파스칼 삼각형은 첫 번째 줄 첫 번째 행을 1로 초기화한 후 다음 줄부터는 바로 위의 값과 바로 위 왼쪽의 값을 더한 값이 된다.
 public class Jungol6 {
 
 	public static void main(String[] args) {
 		int[][] numberMatrix = new int[6][6];
+		
+		
 
 //		// 1. 1로 초기화
 //		//numberMatrix[0][0] = 0;  //int배열이니까 0으로 초기화 되어 있음. 
