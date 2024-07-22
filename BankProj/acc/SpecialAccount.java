@@ -1,5 +1,7 @@
 package acc;
 
+import exc.BankException;
+
 public class SpecialAccount extends Account{
 	
 	String grade;
@@ -36,19 +38,24 @@ public class SpecialAccount extends Account{
 	}
 	
 	@Override
-	public void deposit(int money) { //특수계좌의 입금처리
+	public void deposit(int money) throws BankException { //특수계좌의 입금처리
 		switch(grade) {
 		case "VIP" : money *= 1.04; break;
 		case "Gold" : money *= 1.03; break;
 		case "Silver" : money *= 1.02; break;
 		case "Normal" : money *= 1.01; break;
 		} 
-		super.deposit(money);
+		super.deposit(money); //account클래스에서 throw를 던지므로, specialaccount도 throw필요
 	}
 	
+//	@Override
+//	public String info() {
+//		return super.info()+", 등급:"+getGrade();
+//	}
+	
 	@Override
-	public String info() {
-		return super.info()+", 등급:"+getGrade();
+	public String toString() {
+		return super.toString()+", 등급:"+getGrade();
 	}
 	 
 	
