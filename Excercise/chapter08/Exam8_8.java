@@ -1,7 +1,5 @@
 package chapter08;
 
-import java.util.InputMismatchException;
-
 /*다음은 1~100사이의 숫자를 맞추는 게임을 실행하던 도중에 숫자가 아닌 영문자를 
 넣어서 발생한 예외이다. 예외처리를 해서 숫자가 아닌 값을 입력했을 때는 다시 입력을 
 받도록 보완하라.*/

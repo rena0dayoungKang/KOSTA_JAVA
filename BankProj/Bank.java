@@ -1,6 +1,7 @@
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
-import javax.security.sasl.AuthorizeCallback;
 
 import acc.Account;
 //다른패키지에 있을 때 import하고, 사용 하거나 import하기 싫으면 클래스이름앞에 패키지명 붙일 수있다
@@ -12,11 +13,9 @@ public class Bank {
 
 	Scanner scanner = new Scanner(System.in);
 
-	Bank() { // 기본생성자
-	}
-
 	// account 여러개를 넣을 수 있는 배열 변수 Account 클래스 타입으로 생성
-	Account[] accounts = new Account[100];
+	// Account[] accounts = new Account[100];
+	ArrayList<Account> accounts = new ArrayList<>();
 	int cnt;
 
 	int selectMenu() throws BankException {
@@ -55,7 +54,7 @@ public class Bank {
 		case 2:
 			makeSpecialAccount();
 			break;
-		default :
+		default:
 			throw new BankException("메뉴오류", BankErr.MAKEACCMENU);
 		}
 	}
@@ -75,7 +74,8 @@ public class Bank {
 		if (money < 0) {
 			throw new BankException("입금오류", BankErr.DEPOSIT);
 		}
-		accounts[cnt++] = new Account(numString, nameString, money);
+		// accounts[cnt++] = new Account(numString, nameString, money);
+		accounts.add(new Account(numString, nameString, money));
 		// accounts 0번 인덱스부터 계좌정보를 차례대로 채워주는 느낌
 
 	}
@@ -84,11 +84,11 @@ public class Bank {
 		System.out.println("[특수계좌개설]");
 		System.out.print("계좌번호 :");
 		String numString = scanner.nextLine();
-		
+
 		if (searchAccByNum(numString) != null) {
 			throw new BankException("계좌오류", BankErr.EXEACCID);
 		}
-		
+
 		System.out.print("이름:");
 		String nameString = scanner.nextLine();
 		System.out.print("입금액:");
@@ -99,20 +99,25 @@ public class Bank {
 		System.out.print("등급(VIP-V, Gold-G, Silver-S, Normal-N) :");
 		String grade = scanner.nextLine();
 		// grade는 이상한 값 넣으면 normal로 되게 처리 되어 있나?
-		accounts[cnt++] = new SpecialAccount(numString, nameString, money, grade);
+		// accounts[cnt++] = new SpecialAccount(numString, nameString, money, grade);
+		accounts.add(new SpecialAccount(numString, nameString, money, grade));
 		// accounts 0번 인덱스부터 계좌정보를 차례대로 채워주는 느낌
 
 	}
 
 	Account searchAccByNum(String accString) {
-		Account acc = null;
-		for (int i = 0; i < cnt; i++) {
-			if (accounts[i].getAccountNum().equals(accString)) {
-				acc = accounts[i];
-				break;
-			}
+//		Account acc = null;
+//		for (int i = 0; i < cnt; i++) {
+//			if (accounts[i].getAccountNum().equals(accString)) {
+//				acc = accounts[i];
+//				break;
+//			}
+//		}
+		for (Account account : accounts) {
+			if (account.getAccountNum().equals(accString))
+				return account;
 		}
-		return acc;
+		return null;
 	}
 
 	void deposit() throws BankException {
@@ -130,14 +135,12 @@ public class Bank {
 		System.out.println("입금액 : ");
 		// nexInt()는 엔터값이 자꾸 찌끄러기로 남아있음 그래서 nextLine()으로 엔터까지 가져와서 자동버려줌
 		int money = Integer.parseInt(scanner.nextLine());
-		
-		//Account클래스의 deposit() 메서드에서 익셉션 처리함.
+
+		// Account클래스의 deposit() 메서드에서 익셉션 처리함.
 //		if (money < 0) {
 //			throw new BankException("입금오류", BankErr.DEPOSIT);
 //		}
-		
-		
-		
+
 //		for (int i = 0; i < cnt; i++) { //계좌번호 찾는 코드는 공통코드라서 상수로 빼면 좋음
 //			if (!(accounts[i].accountNum == accString)) {
 //				System.out.println("잘못된 계좌번호 입니다.");
@@ -160,17 +163,15 @@ public class Bank {
 		}
 		System.out.println("출금액 : ");
 		int money = Integer.parseInt(scanner.nextLine());
-		
-		
-		//account클래스에서 출금 오류 처리 
+
+		// account클래스에서 출금 오류 처리
 //		if (money < 0) {
 //			throw new BankException("출금오류", BankErr.DEPOSIT);
 //		}
-		
-		
+
 		acc.withdraw(money);
-		
-		//account클래스에서 잔액 부족 처리 
+
+		// account클래스에서 잔액 부족 처리
 //		if (acc.getBalance() <= 0) {
 //			throw new BankException("잔액부족", BankErr.NOTBALANCE);
 //		}
@@ -193,9 +194,13 @@ public class Bank {
 
 	void allAccountInfo() {
 		System.out.println("[전체계좌조회]");
-		for (int i = 0; i < cnt; i++) {
-			// account배열의 나머지에는 null있으니까 cnt만큼만 돌려야 있는 계좌번호만 조회
-			System.out.println(accounts[i]);
+//		for (int i = 0; i < cnt; i++) {
+//			// account배열의 나머지에는 null있으니까 cnt만큼만 돌려야 있는 계좌번호만 조회
+//			System.out.println(accounts[i]);
+//		}
+		Iterator<Account> it = accounts.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
 		}
 	}
 
