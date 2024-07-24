@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-
 import acc.Account;
 //다른패키지에 있을 때 import하고, 사용 하거나 import하기 싫으면 클래스이름앞에 패키지명 붙일 수있다
 import acc.SpecialAccount;
@@ -199,7 +198,7 @@ public class Bank {
 //			System.out.println(accounts[i]);
 //		}
 		Iterator<Account> it = accounts.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			System.out.println(it.next());
 		}
 	}

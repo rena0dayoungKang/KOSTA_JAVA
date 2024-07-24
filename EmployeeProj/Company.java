@@ -1,12 +1,15 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import emp.Employee;
-import emp.Freelancer;
 import emp.IBusinessTrip;
-import emp.Permanet;
 
 public class Company {
 	
 	//클래스 배열 
-	Employee[] employees = new Employee[100];
+	//Employee[] employees = new Employee[100];
+	//ArrayList형태로 바꾸기 0723
+	ArrayList<Employee> employees = new ArrayList<>();
 	int cnt;
 
 	
@@ -18,24 +21,32 @@ public class Company {
 //	}
 	
 	public void addEmployee(Employee emp) {
-		employees[cnt++] = emp;
+		//employees[cnt++] = emp;
+		employees.add(emp);
 	}
 	
 	public void allEmployeeInfo() {
-		for (int i = 0; i < cnt; i++) {
-			System.out.println(employees[i].info());
+//		for (int i = 0; i < cnt; i++) {
+//			System.out.println(employees[i].info());
+//		}
+		for (Employee employee : employees) {
+			System.out.println(employee.info());
 		}
 	}
 	
 	public int getTotalPay() {
 		int tot = 0;
-		for (int i = 0; i < cnt;i++) {	
-//			if (employees[i] instanceof Permanet) {
-//				tot += ((Permanet)(employees[i])).getPay();
-//			} else if (employees[i] instanceof Freelancer) {
-//				tot += ((Freelancer)(employees[i])).getPay();
-//			} 자식만 가진 메서드를 부를 때는 이렇게 쓰는데 공통으로 오버라이딩된 메서드를 쓸때는 필요없다
-			tot += employees[i].getPay();
+//		for (int i = 0; i < cnt;i++) {	
+////			if (employees[i] instanceof Permanet) {
+////				tot += ((Permanet)(employees[i])).getPay();
+////			} else if (employees[i] instanceof Freelancer) {
+////				tot += ((Freelancer)(employees[i])).getPay();
+////			} 자식만 가진 메서드를 부를 때는 이렇게 쓰는데 공통으로 오버라이딩된 메서드를 쓸때는 필요없다
+//			tot += employees[i].getPay();
+//		}
+		Iterator<Employee> it = employees.iterator();
+		while(it.hasNext()) {
+			tot += it.next().getPay();
 		}
 		
 		return tot;
@@ -78,14 +89,21 @@ public class Company {
 	}
 	
 	public Employee findEmployeeByNum(int numarg) { //사번으로 직원 찾는 메서드
-		Employee employee = null;
-		for (int i = 0; i < cnt; i++) {
-			if (employees[i].getNum() == numarg) {
-				employee = employees[i];
-				break;
+		for (Employee employee : employees) {
+			if (employee.getNum() == numarg) {
+				return employee;
 			}
 		}
-		return employee;
+		
+//		Employee employee = null;
+//		for (int i = 0; i < cnt; i++) {
+//			if (employees[i].getNum() == numarg) {
+//				employee = employees[i];
+//				break;
+//			}
+//		}
+//		return employee;
+		return null;
 	}
 
 	public void regBusinessTrip(IBusinessTrip emp, int day) {
