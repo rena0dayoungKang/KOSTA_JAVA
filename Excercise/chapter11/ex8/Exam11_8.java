@@ -14,6 +14,7 @@ class Student implements Comparable<Student> {
 	int math;
 	int total; // 총점
 	int rank; // 전교등수
+	int classRank;// 반등수
 
 	Student(String name, int ban, int no, int kor, int eng, int math) {
 		this.name = name;
@@ -43,7 +44,7 @@ class Student implements Comparable<Student> {
 
 	public String toString() {
 		return name + "," + ban + "," + no + "," + kor + "," + eng + "," + math + "," + getTotal() + "," + getAverage()
-				+ "," + rank;// 새로추가
+				+ "," + rank +","+ classRank; // 새로추가
 	}
 
 	public static class Exam11_8 {

@@ -15,6 +15,13 @@ public class WrapperTest1 {
 		//m = null; error난다
 		n = null;  //n은 Wrapper클래스 타입이므로 null이 들어갈 수 있다.
 		
+		Object obj = 10; 
+		//boxing과 Upcasting 동시에 일어남, 
+		//10이 Integer클래스로 boxing -> Object클래스로 Upcasting
+		int i = (Integer)obj;
+		//Integer타입은 int 타입에 Unboxing도 가능 
+		
+		
 		
 	}
 
