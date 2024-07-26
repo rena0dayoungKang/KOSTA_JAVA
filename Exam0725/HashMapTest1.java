@@ -90,7 +90,7 @@ public class HashMapTest1 {
 
 		// key값으로 value가져오기
 		Account account = hs.get("1003");
-		// System.out.println(account);
+		System.out.println(account);
 
 		// key값이 있는지 확인하기
 		boolean check = hs.containsKey("1006");
@@ -125,7 +125,7 @@ public class HashMapTest1 {
 		hs.keySet().iterator();
 		
 		for (Map.Entry<String, Account> entry : hs.entrySet()) {
-			System.out.println(entry.getKey() + ":" + entry.getValue());
+			//System.out.println(entry.getKey() + ":" + entry.getValue());
 		}
 	}
 
